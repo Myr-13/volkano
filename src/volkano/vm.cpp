@@ -6,11 +6,11 @@
 #include <sstream>
 #include <unordered_map>
 
+#include "base.h"
+#include "compiler.h"
+#include "opcodes.h"
 #include "parser.h"
 #include "stack.h"
-#include "compiler.h"
-#include "mem.h"
-#include "opcodes.h"
 
 class CVolkano_VM
 {

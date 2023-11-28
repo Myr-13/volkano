@@ -1,0 +1,10 @@
+func test_1
+{
+    print("Hi from test_1 function\n")
+}
+
+func main
+{
+    print("Hi from main function\n")
+    test_1()
+}

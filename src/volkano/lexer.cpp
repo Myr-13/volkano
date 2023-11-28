@@ -1,4 +1,6 @@
 #include "lexer.h"
+#include "base.h"
+
 #include <regex>
 
 void CLexer::Init(const std::string &Data)
@@ -38,7 +40,7 @@ SToken CLexer::Parse()
 	std::string Buf;
 
 	SkipWhitespace();
-	while(isalpha(m_C))
+	while(is_char(m_C))
 	{
 		Buf += m_C;
 		NextChar();

@@ -1,6 +1,6 @@
 #include "compiler.h"
+#include "base.h"
 #include "opcodes.h"
-#include "mem.h"
 
 #include <vstatus.h>
 
