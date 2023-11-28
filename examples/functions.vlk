@@ -1,6 +1,6 @@
 func test_1
 {
-    print("Hi from test_1 function\n")
+    print("Hi from test_1 function\n", "kekeke\n", 73)
 }
 
 func main

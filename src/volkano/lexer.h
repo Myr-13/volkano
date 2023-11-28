@@ -18,6 +18,7 @@ enum
 	TKN_EOF,      // EOF symbol (\0)
 
 	TKN_STRING,   // "string"
+	TKN_INT,   // 3333442
 };
 
 static const char *gs_apTokenNames[] = {
@@ -32,6 +33,7 @@ static const char *gs_apTokenNames[] = {
 	"TKN_EOF",
 
 	"TKN_STRING",
+	"TKN_INT",
 };
 
 struct SToken
@@ -55,6 +57,7 @@ class CLexer
 
 	SToken Parse();
 	SToken ParseString();
+	SToken ParseInt();
 
 public:
 	void Init(const std::string &Data);

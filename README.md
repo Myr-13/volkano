@@ -1,7 +1,7 @@
 # Volkano
 Shity programming language, made in C++
 
-## ODO
+## TODO
 - [ ] Finish error handling
 - [ ] Create main executable for executor
 - [ ] Arifmetic operations
@@ -26,3 +26,4 @@ Shity programming language, made in C++
 ### Tools
 - [ ] Auto docks
 - [ ] Bytecode compiler (like luac)
+- [ ] Decompiler

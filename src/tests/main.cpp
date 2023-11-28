@@ -4,7 +4,14 @@
 
 int Vlk_Print(CVolkano_VM *pVM)
 {
-	std::cout << Vlk_GetString(pVM, -1);
+	int Top = Vlk_GetTop(pVM) + 1;
+	for(int i = 0; i < Top; i++)
+	{
+		if(Vlk_IsInt(pVM, i))
+			std::cout << Vlk_GetInt(pVM, i);
+		else if(Vlk_IsString(pVM, i))
+			std::cout << Vlk_GetString(pVM, i);
+	}
 
 	return 0;
 }

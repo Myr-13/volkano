@@ -69,6 +69,19 @@ SToken CLexer::ParseString()
 	return { TKN_STRING, Buf };
 }
 
+SToken CLexer::ParseInt()
+{
+	std::string Buf;
+
+	while(isalnum(m_C))
+	{
+		Buf += m_C;
+		NextChar();
+	}
+
+	return { TKN_INT, Buf };
+}
+
 SToken CLexer::NextToken()
 {
 	SToken Token = Parse();
@@ -84,9 +97,13 @@ SToken CLexer::NextToken()
 		case ')': Token.m_Type = TKN_RPAREN; break;
 		case '{': Token.m_Type = TKN_LBRACE; break;
 		case '}': Token.m_Type = TKN_RBRACE; break;
-		case '\"': NextChar(); Token = ParseString(); break;
 		case ',': Token.m_Type = TKN_COMMA; break;
+		case '\"': NextChar(); Token = ParseString(); break;
 		case '\0': Token.m_Type = TKN_EOF; break;
+		default:
+		{
+			if(isalnum(m_C)) { NextChar(); Token = ParseInt(); }
+		} break;
 	}
 
 	NextChar();

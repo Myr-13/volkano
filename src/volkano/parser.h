@@ -25,13 +25,6 @@ struct SParserNode
 	std::vector<SParserNode> m_vNodes;
 };
 
-struct SParserFunc
-{
-	std::string m_Name;
-	std::vector<SParserNode> m_vNodes;
-	bool m_NeedClose; // false - no function in process
-};
-
 class CParser
 {
 	CLexer *m_pLexer;
@@ -41,6 +34,7 @@ class CParser
 
 	SParserNode ParseID();
 	SParserNode ParseList();
+	SParserNode ParseInt();
 	SParserNode ParseString();
 	SParserNode ParseFactor();
 	SParserNode ParseTerm();

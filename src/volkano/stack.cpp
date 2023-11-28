@@ -21,7 +21,7 @@ void CStack::Push(Vlk_Value Value)
 
 void CStack::Pop()
 {
-	Vlk_Value &Value = m_vStack.back();
+	Vlk_Value &Value = m_vStack[m_vStack.size() - 1];
 
 	// Delete string
 	if(Value.m_Type == VLK_TYPE_STRING)

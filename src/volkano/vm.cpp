@@ -167,6 +167,7 @@ public:
 			} break;
 
 			case OP_PUSH_STR: Vlk_PushValue(this, pStartStr); break;
+			case OP_PUSH_INT: Vlk_PushValue(this, GetType<int>()); break;
 			case OP_POP: Vlk_Pop(this); break;
 			default: break;
 			}
@@ -174,15 +175,8 @@ public:
 	}
 };
 
-CVolkano_VM *Vlk_NewVM()
-{
-	return new CVolkano_VM;
-}
-
-void Vlk_CloseVM(CVolkano_VM *pVM)
-{
-	delete pVM;
-}
+CVolkano_VM *Vlk_NewVM() { return new CVolkano_VM; }
+void Vlk_CloseVM(CVolkano_VM *pVM) { delete pVM; }
 
 void Vlk_Execute(CVolkano_VM *pVM)
 {
@@ -264,6 +258,7 @@ void Vlk_PushValue(CVolkano_VM *pVM, Vlk_Float f) { pVM->Stack()->Push(Vlk_Help_
 void Vlk_PushValue(CVolkano_VM *pVM, Vlk_CFunction fn) { pVM->Stack()->Push(Vlk_Help_CreateCFunction(fn)); }
 
 void Vlk_Pop(CVolkano_VM *pVM) { pVM->Stack()->Pop(); }
+int Vlk_GetTop(CVolkano_VM *pVM) { return pVM->Stack()->Top(); }
 
 #define IS_TYPE(VM, i, type) (VM->Stack()->IsType(i, type))
 bool Vlk_IsNull(CVolkano_VM *pVM, int Idx) { return IS_TYPE(pVM, Idx, VLK_TYPE_NULL); }

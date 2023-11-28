@@ -101,6 +101,7 @@ void CCompiler::BuildCall(const SParserNode &Node)
 		switch(Param.m_ParamType)
 		{
 		case VLK_TYPE_STRING: AddPushStr(Param.m_Value); break;
+		case VLK_TYPE_INT: AddOp(OP_PUSH_INT); AddType(std::stoi(Param.m_Value)); break;
 		}
 	}
 

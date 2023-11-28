@@ -9,6 +9,7 @@ enum
 	OP_PUSH_STR,    // [0x03] Push null-terminated string value to stack
 	OP_POP,         // [0x04] Pop value from stack
 	OP_RET,         // [0x05] Return from function (Marks end of function)
+	OP_PUSH_INT,    // [0x06] Push 4 bytes signed int
 };
 
 #endif // VOLKANO_OPCODES_H

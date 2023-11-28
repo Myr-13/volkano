@@ -21,6 +21,7 @@ VLK_API void Vlk_PushValue(CVolkano_VM *pVM, Vlk_Float f);
 VLK_API void Vlk_PushValue(CVolkano_VM *pVM, Vlk_CFunction fn);
 
 VLK_API void Vlk_Pop(CVolkano_VM *pVM);
+VLK_API int Vlk_GetTop(CVolkano_VM *pVM);
 
 VLK_API bool Vlk_IsNull(CVolkano_VM *pVM, int Idx);
 VLK_API bool Vlk_IsInt(CVolkano_VM *pVM, int Idx);

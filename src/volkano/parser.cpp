@@ -57,6 +57,16 @@ SParserNode CParser::ParseList()
 	return Node;
 }
 
+SParserNode CParser::ParseInt()
+{
+	SParserNode Node;
+	Node.m_Value = m_Token.m_Data;
+	Node.m_ParamType = VLK_TYPE_INT;
+	Eat(TKN_INT);
+
+	return Node;
+}
+
 SParserNode CParser::ParseString()
 {
 	SParserNode Node;
@@ -73,6 +83,7 @@ SParserNode CParser::ParseFactor()
 		case TKN_ID: return ParseID();
 		case TKN_LPAREN: return ParseList();
 		case TKN_STRING: return ParseString();
+		case TKN_INT: return ParseInt();
 	}
 
     return {};
