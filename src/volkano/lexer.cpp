@@ -24,6 +24,15 @@ void CLexer::NextChar()
 	}
 }
 
+void CLexer::PrevChar()
+{
+	if(m_Offset > 0)
+	{
+		m_Offset--;
+		m_C = m_Data[m_Offset];
+	}
+}
+
 void CLexer::SkipWhitespace()
 {
 	while(isspace(m_C))
@@ -38,12 +47,17 @@ const char *CLexer::GetTokenName(SToken &Token)
 SToken CLexer::Parse()
 {
 	std::string Buf;
+	int i = 0;
 
 	SkipWhitespace();
 	while(is_char(m_C))
 	{
+		if(isdigit(m_C) && i == 0)
+			break;
+
 		Buf += m_C;
 		NextChar();
+		i++;
 	}
 
 	if(Buf.empty())
@@ -57,6 +71,7 @@ SToken CLexer::ParseString()
 {
 	std::string Buf;
 
+	SkipWhitespace();
 	while(m_C != '\"')
 	{
 		Buf += m_C;
@@ -73,11 +88,12 @@ SToken CLexer::ParseInt()
 {
 	std::string Buf;
 
-	while(isalnum(m_C))
+	while(isdigit(m_C))
 	{
 		Buf += m_C;
 		NextChar();
 	}
+	PrevChar();
 
 	return { TKN_INT, Buf };
 }
@@ -102,7 +118,7 @@ SToken CLexer::NextToken()
 		case '\0': Token.m_Type = TKN_EOF; break;
 		default:
 		{
-			if(isalnum(m_C)) { NextChar(); Token = ParseInt(); }
+			if(isalnum(m_C)) Token = ParseInt();
 		} break;
 	}
 

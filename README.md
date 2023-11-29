@@ -13,6 +13,13 @@ Shity programming language, made in C++
 - [ ] Working call from C++ to volkano
 - [ ] Namespaces
 - [ ] Tables (like in lua)
+- [ ] Comments
+- [ ] Loading volkano .dll modules
+- [ ] If statements
+- [ ] While, for
+- [ ] Enums
+- [ ] Macroses
+- [ ] Include other .vlk files
 
 ### STD lib
 - [ ] IO
@@ -22,8 +29,10 @@ Shity programming language, made in C++
 - [ ] Time
 - [ ] XML
 - [ ] JSON
+- [ ] ZLib
 
 ### Tools
 - [ ] Auto docks
 - [ ] Bytecode compiler (like luac)
 - [ ] Decompiler
+- [ ] Highlight for sublime text

@@ -53,6 +53,7 @@ class CLexer
 
 	char Peek(size_t Offset);
 	void NextChar();
+	void PrevChar();
 	void SkipWhitespace();
 
 	SToken Parse();

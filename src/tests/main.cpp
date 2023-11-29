@@ -19,7 +19,7 @@ int Vlk_Print(CVolkano_VM *pVM)
 int main()
 {
 	CVolkano_VM *pVM = Vlk_NewVM();
-	int Status = Vlk_LoadFromFile(pVM, "../examples/functions.vlk");
+	int Status = Vlk_LoadFromFile(pVM, "../examples/print.vlk");
 
 	Vlk_SetGlobal(pVM, "print", Vlk_Print);
 
