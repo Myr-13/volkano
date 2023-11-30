@@ -3,6 +3,7 @@ Shity programming language, made in C++
 
 ## TODO
 - [ ] Finish error handling
+- [ ] Variables
 - [ ] Create main executable for executor
 - [ ] Arifmetic operations
 - [ ] Working call from volkano to C++

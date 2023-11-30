@@ -67,6 +67,24 @@ void CCompiler::AddCall(const std::string &Str)
 	AddStr(Str);
 }
 
+void CCompiler::AddCCall(const std::string &Str)
+{
+	AddOp(OP_CALL_C);
+	AddStr(Str);
+}
+
+void CCompiler::AddRet()
+{
+	AddOp(OP_RET);
+}
+
+void CCompiler::AddSetInt(const std::string &Str, int Value)
+{
+	AddOp(OP_SET_INT);
+	AddStr(Str);
+	AddType(Value);
+}
+
 size_t CCompiler::GetFunctionOffset(const std::string &Str, bool &Found)
 {
 	auto f = m_Functions.find(Str);
@@ -78,17 +96,6 @@ size_t CCompiler::GetFunctionOffset(const std::string &Str, bool &Found)
 
 	Found = true;
 	return f->second;
-}
-
-void CCompiler::AddCCall(const std::string &Str)
-{
-	AddOp(OP_CALL_C);
-	AddStr(Str);
-}
-
-void CCompiler::AddRet()
-{
-	AddOp(OP_RET);
 }
 
 void CCompiler::BuildCall(const SParserNode &Node)
@@ -127,18 +134,20 @@ void CCompiler::BuildFunc(const SParserNode &Node)
 	AddRet();
 }
 
+void CCompiler::BuildAssign(const SParserNode &Node)
+{
+
+}
+
 void CCompiler::BuildTree(const SParserNode &Node)
 {
 	for(const SParserNode &n : Node.m_vNodes)
 	{
 		switch(n.m_Type)
 		{
-		case ASN_FUNC:
-			BuildFunc(n);
-			break;
-		case ASN_CALL:
-			BuildCall(n);
-			break;
+		case ASN_FUNC: BuildFunc(n); break;
+		case ASN_CALL: BuildCall(n); break;
+		case ASN_ASSIGN: BuildAssign(n); break;
 		}
 	}
 }

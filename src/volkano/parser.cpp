@@ -22,6 +22,7 @@ void CParser::Eat(int Type)
 SParserNode CParser::ParseID()
 {
 	SParserNode Node;
+	Node.m_Type = ASN_VAR;
 	Node.m_Value = m_Token.m_Data;
 
 	Eat(TKN_ID);
@@ -31,6 +32,15 @@ SParserNode CParser::ParseID()
 	{
 		Node.m_Type = ASN_CALL;
 		Node.m_vNodes = ParseList().m_vNodes;
+	}
+
+	// Assignment
+	if(TKN_T(TKN_ASSIGN))
+	{
+		Eat(TKN_ASSIGN);
+
+		Node.m_Type = ASN_ASSIGN;
+		Node.m_vNodes.push_back(ParseExpr());
 	}
 
 	return Node;

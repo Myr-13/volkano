@@ -114,6 +114,7 @@ SToken CLexer::NextToken()
 		case '{': Token.m_Type = TKN_LBRACE; break;
 		case '}': Token.m_Type = TKN_RBRACE; break;
 		case ',': Token.m_Type = TKN_COMMA; break;
+		case '=': Token.m_Type = TKN_ASSIGN; break;
 		case '\"': NextChar(); Token = ParseString(); break;
 		case '\0': Token.m_Type = TKN_EOF; break;
 		default:

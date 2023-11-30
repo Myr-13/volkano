@@ -33,13 +33,15 @@ class CCompiler
 	void AddCall(const std::string &Str);
 	void AddCCall(const std::string &Str);
 	void AddRet();
-
-	void BuildCall(const SParserNode &Node);
-	void BuildFunc(const SParserNode &Node);
+	void AddSetInt(const std::string &Str, int Value);
 
 	size_t GetFunctionOffset(const std::string &Str, bool &Found);
 
+	void BuildCall(const SParserNode &Node);
+	void BuildFunc(const SParserNode &Node);
 	void BuildTree(const SParserNode &Node);
+	void BuildAssign(const SParserNode &Node);
+
 	void CreateHeader();
 
 public:

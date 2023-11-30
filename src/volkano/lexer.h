@@ -15,6 +15,7 @@ enum
 	TKN_LBRACE,   // {
 	TKN_RBRACE,   // }
 	TKN_COMMA,    // ,
+	TKN_ASSIGN,   // =
 	TKN_EOF,      // EOF symbol (\0)
 
 	TKN_STRING,   // "string"
@@ -30,6 +31,7 @@ static const char *gs_apTokenNames[] = {
 	"TKN_LBRACE",
 	"TKN_RBRACE",
 	"TKN_COMMA",
+	"TKN_ASSIGN",
 	"TKN_EOF",
 
 	"TKN_STRING",

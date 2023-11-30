@@ -11,7 +11,8 @@ enum
 	ASN_FUNC,   // func a()
 	ASN_CALL,   // a()
 	ASN_ASSIGN, // a = 10
-	ASN_COMPOUND
+	ASN_COMPOUND,
+	ASN_VAR,    // a
 };
 
 struct SParserNode
