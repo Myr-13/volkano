@@ -6,12 +6,12 @@ Shity programming language, made in C++
 - [ ] Variables
 - [ ] Create main executable for executor
 - [ ] Arifmetic operations
-- [ ] Working call from volkano to C++
+- [X] Working call from volkano to C++
 - [ ] Docs
 - [ ] Arguments in functions
 - - [ ] Just arguments
 - - [ ] Var arguments
-- [ ] Working call from C++ to volkano
+- [X] Working call from C++ to volkano
 - [ ] Namespaces
 - [ ] Tables (like in lua)
 - [ ] Comments
@@ -21,6 +21,7 @@ Shity programming language, made in C++
 - [ ] Enums
 - [ ] Macroses
 - [ ] Include other .vlk files
+- [ ] Pointers
 
 ### STD lib
 - [ ] IO

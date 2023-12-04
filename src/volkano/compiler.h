@@ -16,6 +16,7 @@ class CCompiler
 	size_t m_Offset;
 	std::vector<vlk_u8> m_vData;
 	std::vector<vlk_u8> m_vHeaderData;
+	int m_StackPos;
 
 	std::unordered_map<std::string, size_t> m_Functions;
 

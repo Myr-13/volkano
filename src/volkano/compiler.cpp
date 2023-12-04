@@ -105,10 +105,20 @@ void CCompiler::BuildCall(const SParserNode &Node)
 	// Add all arguments
 	for(const SParserNode &Param : Node.m_vNodes)
 	{
-		switch(Param.m_ParamType)
+		if(Param.m_Type == ASN_VAR)
 		{
-		case VLK_TYPE_STRING: AddPushStr(Param.m_Value); break;
-		case VLK_TYPE_INT: AddOp(OP_PUSH_INT); AddType(std::stoi(Param.m_Value)); break;
+			AddOp(OP_PUSH_VAR);
+			AddStr(Param.m_Value);
+
+			m_StackPos++;
+		}
+		else
+		{
+			switch(Param.m_ParamType)
+			{
+			case VLK_TYPE_STRING: AddPushStr(Param.m_Value); break;
+			case VLK_TYPE_INT: AddOp(OP_PUSH_INT); AddType(std::stoi(Param.m_Value)); break;
+			}
 		}
 	}
 
@@ -136,7 +146,17 @@ void CCompiler::BuildFunc(const SParserNode &Node)
 
 void CCompiler::BuildAssign(const SParserNode &Node)
 {
+	const SParserNode &Value = Node.m_vNodes[0];
 
+	switch(Value.m_ParamType)
+	{
+	case VLK_TYPE_STRING:
+	{
+		AddOp(OP_SET_STR);
+		AddStr(Node.m_Value);
+		AddStr(Value.m_Value);
+	} break;
+	}
 }
 
 void CCompiler::BuildTree(const SParserNode &Node)
@@ -172,6 +192,7 @@ int CCompiler::Build(const std::string &Code)
 	m_Parser.Init(&m_Lexer);
 
 	m_Offset = 0;
+	m_StackPos = 0;
 
 	SParserNode Root;
 
