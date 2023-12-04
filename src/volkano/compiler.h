@@ -16,7 +16,9 @@ class CCompiler
 	size_t m_Offset;
 	std::vector<vlk_u8> m_vData;
 	std::vector<vlk_u8> m_vHeaderData;
+
 	int m_StackPos;
+	std::unordered_map<std::string, int> m_vVariables;
 
 	std::unordered_map<std::string, size_t> m_Functions;
 
@@ -34,7 +36,9 @@ class CCompiler
 	void AddCall(const std::string &Str);
 	void AddCCall(const std::string &Str);
 	void AddRet();
-	void AddSetInt(const std::string &Str, int Value);
+	void AddSetInt(int Pos, int Value);
+	void AddSetStr(int Pos, const std::string &Str);
+	void AddDup(int Pos);
 
 	size_t GetFunctionOffset(const std::string &Str, bool &Found);
 

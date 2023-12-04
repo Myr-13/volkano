@@ -78,11 +78,24 @@ void CCompiler::AddRet()
 	AddOp(OP_RET);
 }
 
-void CCompiler::AddSetInt(const std::string &Str, int Value)
+void CCompiler::AddSetInt(int Pos, int Value)
 {
 	AddOp(OP_SET_INT);
-	AddStr(Str);
+	AddType(Pos);
 	AddType(Value);
+}
+
+void CCompiler::AddSetStr(int Pos, const std::string &Str)
+{
+	AddOp(OP_SET_STR);
+	AddType(Pos);
+	AddStr(Str);
+}
+
+void CCompiler::AddDup(int Pos)
+{
+	AddOp(OP_DUP);
+	AddType(Pos);
 }
 
 size_t CCompiler::GetFunctionOffset(const std::string &Str, bool &Found)
@@ -107,10 +120,10 @@ void CCompiler::BuildCall(const SParserNode &Node)
 	{
 		if(Param.m_Type == ASN_VAR)
 		{
-			AddOp(OP_PUSH_VAR);
-			AddStr(Param.m_Value);
+			auto Elem = m_vVariables.find(Node.m_Value);
 
-			m_StackPos++;
+			if(Elem != m_vVariables.end())
+				AddDup(Elem->second);
 		}
 		else
 		{
@@ -147,16 +160,20 @@ void CCompiler::BuildFunc(const SParserNode &Node)
 void CCompiler::BuildAssign(const SParserNode &Node)
 {
 	const SParserNode &Value = Node.m_vNodes[0];
+	auto Elem = m_vVariables.find(Node.m_Value);
 
-	switch(Value.m_ParamType)
+	if(Elem == m_vVariables.end())
 	{
-	case VLK_TYPE_STRING:
-	{
-		AddOp(OP_SET_STR);
-		AddStr(Node.m_Value);
-		AddStr(Value.m_Value);
-	} break;
+		switch(Value.m_ParamType)
+		{
+		case VLK_TYPE_STRING: AddPushStr(Value.m_Value); break;
+		}
+
+		m_vVariables.insert({ Node.m_Value, m_StackPos });
+		m_StackPos++;
 	}
+	else
+		AddSetStr(Elem->second, Value.m_Value);
 }
 
 void CCompiler::BuildTree(const SParserNode &Node)

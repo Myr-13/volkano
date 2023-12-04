@@ -15,8 +15,9 @@ enum
 	OP_POP,         // [0x04] Pop value from stack                         | pop
 	OP_RET,         // [0x05] Return from function (Marks end of function) | ret
 	OP_PUSH_INT,    // [0x06] Push i32 to stack                            | pushi 57
-	OP_SET_INT,     // [0x07] Set stacks value to i32 (Counting from top)  | seti u16, 57
-	OP_SET_STR,     // [0x08] Set stacks value to str (Counting from top)  | sets u16, str
+	OP_SET_INT,     // [0x07] Set stacks value to i32 (Counting from top)  | seti 5, 57
+	OP_SET_STR,     // [0x08] Set stacks value to str (Counting from top)  | sets 5, str
+	OP_DUP,         // [0x09] Duplicate value from stack by id to top      | dup 5
 };
 
 #endif // VOLKANO_OPCODES_H
