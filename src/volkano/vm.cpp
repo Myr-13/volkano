@@ -145,6 +145,7 @@ public:
 				Vlk_GetGlobal(this, pStartStr);
 				Vlk_Execute(this);
 			} break;
+
 			case OP_CALL_C:
 			{
 				std::string Name(pStartStr, strlen(pStartStr));
@@ -155,6 +156,7 @@ public:
 
 				Val.m_Data.fn(this);
 			} break;
+
 			case OP_RET:
 			{
 				Running = false;
@@ -164,6 +166,12 @@ public:
 					m_PC = m_vCallStack[m_vCallStack.size() - 1].m_PC;
 					m_vCallStack.pop_back();
 				}
+			} break;
+
+			case OP_DUP:
+			{
+				int Slot = GetType<int>();
+				m_Stack.Push(m_Stack.Get(Slot));
 			} break;
 
 			case OP_PUSH_STR: Vlk_PushValue(this, pStartStr); break;

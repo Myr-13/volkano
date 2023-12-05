@@ -20,4 +20,16 @@ enum
 	OP_DUP,         // [0x09] Duplicate value from stack by id to top      | dup 5
 };
 
+static const char *gs_apOpcodesMnemonics[] = {
+	"call",
+	"callc",
+	"pushs",
+	"pop",
+	"ret",
+	"pushi",
+	"seti",
+	"sets",
+	"dup"
+};
+
 #endif // VOLKANO_OPCODES_H
